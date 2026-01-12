@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Математический калькулятор"
+             xmlns:vm ="clr-namespace:MathematicalOperationsWithDelegates.ViewModels"
+             xmlns:conv="clr-namespace:MathematicalOperationsWithDelegates.Converters"
+
+             x:Class="MathematicalOperationsWithDelegates.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MathematicalViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:ValidatorConverter x:Key="NumberValidator"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Entry x:Name="EntryA"
+       Placeholder="Первое число"
+       Keyboard="Numeric"
+       Text="{Binding Num1}"/>
+
+
+        <Entry x:Name="EntryB"
+       Placeholder="Второе число"
+       Keyboard="Numeric"
+       Text="{Binding Num2}" />
+
+
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="+" Command="{Binding AddCommand}" />
+            <Button Text="-" Command="{Binding SubtractCommand}" />
+            <Button Text="*" Command="{Binding MultiplyCommand}" />
+            <Button Text="/" Command="{Binding DivideCommand}" />
+        </HorizontalStackLayout>
+        
+        <Button Text="Проверить, простое ли первое число"
+                Command="{Binding IsPrimeCommand}" />
+
+        <Button Text="Удвоить первое число"
+                Command="{Binding ToDoubleCommand}" />
+        <Button Text="Возвести первое число в квадрат"
+                Command="{Binding ToSquareCommand}" />
+
+        <Button Text="Сгенерировать событие"
+                Command="{Binding EventCommand}" />
+
+        <Label Text="Результат:"
+               FontAttributes="Bold"/>
+
+        <Label Text="{Binding Result}"
+               FontSize="18"
+               TextColor="AliceBlue"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>
